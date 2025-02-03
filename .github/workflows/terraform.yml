@@ -1,7 +1,7 @@
 name: "Vprofile IAC"
 on:
-  push:
-    branches:
+  Push:
+    Branches:
       - main
       - stage
     paths:  
@@ -20,17 +20,17 @@ env:
  AWS_REGION: us-east-2
  EKS_CLUSTER: vprofile-eks
 jobs:
-   terraform:
+   Terraform:
      name: "Apply terraform code changes"
      runs-on: ubuntu-latest
-     defaults:
-       run:
+     Defaults:
+       Run:
          shell: bash
          working-directory: ./terraform
-     steps:
+     Steps:
        - name: Checkout source code 
          uses: actions/checkout@v4
-       - name: Setup Terraform with specified version on the runner
+       - name: Setup Terraform with the specified version on the runner
          uses: hashicorp/setup-terraform@v2
          #with:\
          #  terraform_version: 1.6.3\
@@ -52,7 +52,7 @@ jobs:
          run: exit 1
        - name: Terraform Apply
          id: apple
-         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+         if: GitHub.ref == 'refs/heads/main' && github.event_name == 'push'
          run: terraform apply -auto-approve -input=false -parallelism=1 planfile
 
        - name: Configure AWS credentials
@@ -64,9 +64,9 @@ jobs:
      
        - name: Get Kube config file
          id: getconfig
-         if: steps.apple.outcome == 'success'
+         if: steps. apple.outcome == 'success'
          run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }} 
 
        - name: Install Ingress controller
-         if: steps.apple.outcome == 'success' && steps.getconfig.outcome == 'success'
+         if: steps. apple.outcome == 'success' && steps.getconfig.outcome == 'success'
          run: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.3/deploy/static/provider/aws/deploy.yaml}
