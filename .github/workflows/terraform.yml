@@ -27,7 +27,7 @@ jobs:
        Run:
          shell: bash
          working-directory: ./terraform
-     Steps:
+     steps:
        - name: Checkout source code 
          uses: actions/checkout@v4
        - name: Setup Terraform with the specified version on the runner
