@@ -30,7 +30,8 @@ jobs:
      Steps:
        - name: Checkout source code 
          uses: actions/checkout@v4
-       - name: Setup Terraform with the specified version on the runner
+     Steps:    
+       - name: Setup Terraform with the specified version on the runner  
          uses: hashicorp/setup-terraform@v3
        - name: Terraform init
          id: init
