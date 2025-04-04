@@ -27,9 +27,9 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "deena-s3-bucket"
+    bucket = "deeya-s3-bucket"
     key    = "terraform.tfstate"
-    region = "us-east-2"
+    region = "us-east-1"
   }
 
   required_version = "~> 1.11.3"
