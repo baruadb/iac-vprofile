@@ -27,7 +27,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "dabu-s3-bucket"
+    bucket = "pompi-s3-bucket"
     key    = "terraform.tfstate"
     region = "us-east-1"
   }
